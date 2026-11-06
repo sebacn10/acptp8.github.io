@@ -1,0 +1,6 @@
+<?php
+require __DIR__.'/_guard.php';$titulo_pagina='Usuarios registrados';$usuarios=[];
+try{$usuarios=acp_db()->query('SELECT u.id,u.nombre,u.email,u.rol,u.created_at,COUNT(e.id) AS evaluaciones FROM usuarios u LEFT JOIN evaluaciones e ON e.usuario_id=u.id GROUP BY u.id,u.nombre,u.email,u.rol,u.created_at ORDER BY u.id DESC')->fetchAll();}catch(PDOException $e){error_log($e->getMessage());}
+require dirname(__DIR__).'/includes/header.php';?>
+<main class="page-main"><section class="page-heading"><span class="eyebrow">TP8 · ROLES Y USUARIOS</span><h1>Usuarios del portal</h1><p>Información disponible únicamente para administradores. Las contraseñas no se muestran.</p><a href="index.php">← Volver al administrador</a></section><section class="content-card"><div class="responsive-table"><table><thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Evaluaciones</th><th>Registro</th></tr></thead><tbody><?php foreach($usuarios as $u):?><tr><td><?=(int)$u['id']?></td><td><?=acp_e($u['nombre'])?></td><td><?=acp_e($u['email'])?></td><td><span class="pill"><?=acp_e($u['rol'])?></span></td><td><?=(int)$u['evaluaciones']?></td><td><?=acp_e($u['created_at'])?></td></tr><?php endforeach;?></tbody></table></div></section></main>
+<?php require dirname(__DIR__).'/includes/footer.php';?>

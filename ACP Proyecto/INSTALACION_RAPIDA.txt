@@ -1,0 +1,8 @@
+ACP PROYECTO - INSTALACION
+1. Copiar carpeta ACP Proyecto a C:\xampp\htdocs\
+2. Iniciar Apache y MySQL.
+3. Importar database/schema.sql desde phpMyAdmin.
+4. Copiar .env.example a .env y revisar usuario y contraseña de MySQL.
+5. Abrir http://localhost/ACP%20Proyecto/index.php
+6. Registrarse e iniciar sesión. Ver README.md para habilitar admin y probar TP4 a TP8.
+NOTA: No usa la base 'lunarmc'; crea una base 'acp_proyecto'.
